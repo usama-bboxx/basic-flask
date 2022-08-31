@@ -5,6 +5,9 @@ from flask import current_app
 
 
 def save_picture(form_picture):
+    """
+    This method is responsible for making the profile image of same size.
+    """
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext

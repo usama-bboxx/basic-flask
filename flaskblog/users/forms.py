@@ -17,11 +17,17 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
+        """
+        This method is being used for validating the username while registration.
+        """
         user = User.query.filter_by(username=username.data).first()
         if user:
             raise ValidationError('That username is taken. Please choose a different one.')
 
     def validate_email(self, email):
+        """
+        This method is being used for validating the email while registration.
+        """
         user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError('That email is taken. Please choose a different one.')
@@ -44,12 +50,18 @@ class UpdateAccountForm(FlaskForm):
     submit = SubmitField('Update')
 
     def validate_username(self, username):
+        """
+        This method is being used for validating the username while updating account information.
+        """
         if username.data != current_user.username:
             user = User.query.filter_by(username=username.data).first()
             if user:
                 raise ValidationError('That username is taken. Please choose a different one.')
 
     def validate_email(self, email):
+        """
+        This method is being used for validating the email while updating account information.
+        """
         if email.data != current_user.email:
             user = User.query.filter_by(email=email.data).first()
             if user:
